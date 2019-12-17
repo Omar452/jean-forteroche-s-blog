@@ -4,14 +4,16 @@ require_once('Manager.php');
 
 class ChaptersManager extends Manager
 {
-    public function getChapters()
+    public function getAllChapters()
     {
-        $chapters = $db->prepare('SELECT id, title, chapter FROM chapters');
+        $db = $this->dbConnect();
+        $chapters = $db->query('SELECT id, title, chapter FROM chapters');
         return $chapters;
     }
 
-    public function getChapter($chapter_id)
+    public function getOneChapter($chapter_id)
     {
+        $db = $this->dbConnect();
         $chapter = $db->prepare('SELECT id, title, chapter FROM chapters WHERE id=?');
         $chapter->execute(array($chapter_id));
         return $chapter;
@@ -19,6 +21,7 @@ class ChaptersManager extends Manager
 
     public function createChapter($chapter_title,$chapter_content)
     {
+        $db = $this->dbConnect();
         $chapter = $db->prepare("INSERT INTO chapters(title, chapter) VALUES(:title, :chapter)");
         $chapter->execute(array(
             "title" => $chapter_title,
@@ -29,6 +32,7 @@ class ChaptersManager extends Manager
 
     public function updateChapter($chapter_id,$chapter_title,$chapter_content)
     {
+        $db = $this->dbConnect();
         $chapter = $db->prepare('UPDATE chapters SET title = :title, chapter = :chapter WHERE id = :id');
         $chapter->execute(array(
             "title" => $chapter_title,
@@ -40,6 +44,7 @@ class ChaptersManager extends Manager
 
     public function deleteChapter($chapter_id)
     {
+        $db = $this->dbConnect();
         $chapter = $db->prepare('DELETE FROM chapters WHERE id=?');
         $chapter->execute(array($chapter_id));
     }
