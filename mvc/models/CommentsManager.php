@@ -16,8 +16,8 @@ class CommentsManager extends Manager
     public function createComment($chapter_id,$pseudo,$content)
     {
         $db = $this->dbConnect();
-        $comment = $db->prepare('INSERT INTO comments(chapter_id,pseudo,comment,date_creation,signal_comment) VALUES 
-        (:chapter_id,:pseudo,:comment,CURDATE(),NULL)');
+        $comment = $db->prepare('INSERT INTO comments(chapter_id,pseudo,comment,date_creation,signal_comment,signal_number) VALUES 
+        (:chapter_id,:pseudo,:comment,CURDATE(),NULL,0)');
         $comment->execute(array(
             "chapter_id" => htmlspecialchars($chapter_id),
             "pseudo" => htmlspecialchars($pseudo),
@@ -29,7 +29,7 @@ class CommentsManager extends Manager
     public function signalComment($comment_id)
     {
         $db = $this->dbConnect();
-        $signaledComment = $db->prepare('UPDATE comments SET signal_comment = true WHERE id = ?');
+        $signaledComment = $db->prepare('UPDATE comments SET signal_comment = true, signal_number = signal_number + 1 WHERE id = ?');
         $signaledComment->execute(array($comment_id));
         return $signaledComment;
     }
@@ -45,12 +45,13 @@ class CommentsManager extends Manager
     public function getSignaledComments()
     {
         $db = $this->dbConnect();
-        $signaledComments = $db->prepare('SELECT id, chapter_id, pseudo, comment, DATE_FORMAT(date_creation, "%d/%m/%Y") AS date_fr  FROM comments WHERE signal_comment=?');
+        $signaledComments = $db->prepare('SELECT id, chapter_id, pseudo, comment, 
+        DATE_FORMAT(date_creation, "%d/%m/%Y") AS date_fr , signal_number FROM comments WHERE signal_comment=?');
         $signaledComments->execute(array(true));
         return $signaledComments;
     }
 
-    public function deleteChapter($comment_id)
+    public function deleteComment($comment_id)
     {
         $db = $this->dbConnect();
         $deletedComment = $db->prepare('DELETE FROM comments WHERE id=?');

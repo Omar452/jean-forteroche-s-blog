@@ -1,10 +1,6 @@
 <?php
-
 $title = "Page d'accueil - Jean Forteroche : Billet simple pour l'Alaska.";
 $description = "Site du roman Billet simple pour l'Alaska du célèbre écrivain et acteur Jean Forteroche.";
-$adminNav = null;
-$login = '<i class="fas fa-sign-in-alt"></i> Connexion';
-
 ?>
 
 <?php ob_start(); ?>
@@ -20,7 +16,7 @@ $login = '<i class="fas fa-sign-in-alt"></i> Connexion';
             Alors, êtes vous pret à vous envoler pour l'Alaska?
         </p>
     
-        <a href="#about" class="btn btn-primary js-scroll-trigger">Embarquez ici</a>
+        <a href="index.php?action=chapters&amp;id=1" class="btn btn-primary js-scroll-trigger">Embarquez ici</a>
         </div>
     </div>
 </header>

@@ -1,0 +1,12 @@
+PAGE ADMIN
+-suppression,modification de chapitres,
+-suppression ou modération de commentaires
+
+GENERAL
+-CSS, JS...
+-verifier données envoyées en GET et POST
+
+FIXER
+-affichage des onglets si admin connécté
+-passage de parametre lorsqu'on renvoie à la page de connexion en cas de login ou mdp incorrect
+

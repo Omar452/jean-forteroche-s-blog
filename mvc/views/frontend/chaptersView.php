@@ -2,38 +2,43 @@
 
 $title = "Chapitres - Jean Forteroche : Billet simple pour l'Alaska.";
 $description = "Page présentant les chapitres du roman Billet simple pour l'Alaska de Jean Forteroche.";
-$adminNav = null;
-$login = '<i class="fas fa-sign-in-alt"></i> Connexion';
-
 ?>
 
 
 <?php ob_start(); ?>
 
 
-
-<div id="chapter-div" class="container-fluid">
+<div class="container-fluid">
     <div class="row">
-        <!-- affiche la liste de tous les chapitres -->
-        <aside class="wrapper p-4 bg-black">
-        <?php
-        while($data = $allChaptersQuery->fetch())
-        {
-        ?>
-            <a href='index.php?action=chapters&amp;id=<?php echo $data['id'];?>'><?php echo $data['title'];?></a> <br> 
-        <?php
-        }
-        $allChaptersQuery->closeCursor();
-        ?> 
-        </aside> 
+        <nav id="side-nav" class="col-sm-2 bg-black w-100 p-0 text-center">
+            <div class="sidebar-header">
+                <p class="py-3">CHAPITRES</p>
+            </div>
+            
+            <ul class="list-group list-group-flush list-unstyled w-100">
+            <?php
+            while($data = $allChaptersQuery->fetch())
+            {
+            ?>
+                <li class="list-group-item-flush w-100 py-2">
+                    <a href='index.php?action=chapters&amp;id=<?php echo $data['id'];?>'><?php echo $data['title'];?></a> <br> 
+                </li>
+            <?php
+            }
+            $allChaptersQuery->closeCursor();
+            ?> 
+            </ul>
+        </nav>
+
+        <div id="chapter-div" class="col-sm-10">
         <!-- affiche le chapitre demandé -->
         <?php
         while($data2 = $chapterQuery->fetch())
         {
         ?>
             <div class="container text-justify py-4 col-md-9">
-                <h2> <?php echo htmlspecialchars($data2["title"]);?> </h2>
-                <p> <?php echo htmlspecialchars($data2["chapter"]);?> </p>
+                <h2> <?php echo $data2["title"];?> </h2>
+                <p> <?php echo $data2["chapter"];?> </p>
             </div>      
         <?php
         }
@@ -50,7 +55,8 @@ $login = '<i class="fas fa-sign-in-alt"></i> Connexion';
             <div class="commentaires">
                 <p>Posté par : <?php echo htmlspecialchars($data3["pseudo"]);?>, le <?php echo $data3["date_fr"];?></p> <br>
                 <p><?php echo htmlspecialchars($data3["comment"]);?></p> <br>
-                <a href="index.php?comment_id=<?php echo $data3["id"]?>">Signaler le commentaire !</a>
+                <a href="index.php?action=signalComment&amp;id=<?php echo $data3["chapter_id"]?>
+                &amp;comment_id=<?php echo $data3["id"]?>">Signaler le commentaire !</a>
             </div>
         <?php
         }
@@ -74,6 +80,11 @@ $login = '<i class="fas fa-sign-in-alt"></i> Connexion';
         </div>
     </div>     
 </div>
+    </div>
+</div>
+
+
+
 
 
 <?php $content = ob_get_clean(); ?>
