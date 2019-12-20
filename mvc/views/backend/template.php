@@ -21,8 +21,7 @@
     <script src="https://cdn.tiny.cloud/1/zxzv60b5q0gc5d3wbi9ezdafwuzak7bbql5pmuzmxut75dr8/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '#chapter'
-            encoding: 'xml'
+            selector: '#chapter',
         });
     </script>
 
@@ -83,6 +82,7 @@
     <!-- Footer -->
     <footer id="footer" class="bg-black small text-center text-white-50">        
         <div class="container pt-3">
+            <?php var_dump($_SESSION);?>
             Copyright &copy; Your Website 2019
         </div>
     </footer>

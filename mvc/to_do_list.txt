@@ -1,12 +1,15 @@
 PAGE ADMIN
--suppression,modification de chapitres,
--suppression ou modération de commentaires
+-page commentaire:suppression ou modération de commentaires
 
 GENERAL
 -CSS, JS...
--verifier données envoyées en GET et POST
+-verifier données envoyées en GET et POST avec html specialchars et les setters
+-ne pas faire suivre les pages d'administration par google
 
-FIXER
--affichage des onglets si admin connécté
--passage de parametre lorsqu'on renvoie à la page de connexion en cas de login ou mdp incorrect
+1 afficher commentaires signalés + nbr de signalements
+2 ajouter les fonctions de suppression ou mod"ération de commentaires
+3 ajouter la suppression des commentaires en meme temps que la suppression d'un chapitre
+
+
+
 

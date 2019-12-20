@@ -17,9 +17,9 @@ $description = "Page réservée à l'administrateur du site";
     {
     ?>
         <li class="list-group-item-flush w-100 py-2">
-            <a href='index.php?action=chapters&amp;id=<?php echo $data['id'];?>'><?php echo $data['title'];?></a> <br>
+            <p><?php echo $data['title'];?></p> <br>
             <div class="row">
-                <a class="badge badge-warning" href='index.php?action=updateChapter&amp;id=<?php echo $data['id'];?>'>Modifier</a> 
+                <a class="badge badge-warning" href='index.php?action=updateChapters&amp;id=<?php echo $data['id'];?>'>Modifier</a> 
                 <a class="badge badge-danger" href='index.php?action=deleteChapter&amp;id=<?php echo $data['id'];?>'>Supprimer</a>
             </div>
         </li>

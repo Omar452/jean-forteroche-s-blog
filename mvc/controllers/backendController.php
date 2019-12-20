@@ -46,12 +46,17 @@ function displayAdminChapter(){
 
     require('views/backend/adminChaptersView.php');
 }
+
+function displayUpdateChaptersView(){
+    $_SESSION["id"] = $_GET["id"];
+    require("views/backend/updateChaptersView.php");
+}
 /* DISPLAY PAGES */
 
 
 
 /* CHAPTERS */
-function addChapter(){
+function addChapters(){
 
     $chaptersManager = new ChaptersManager();
     $affectedLines = $chaptersManager->createChapter($_POST["title"],$_POST["chapter"]);
@@ -62,13 +67,23 @@ function addChapter(){
     }
     else
     {
-        require('views/backend/adminChaptersView.php');
+        header('Location: index.php?action=adminChapter');
     } 
 }
 
 function deleteChapters(){
     $chaptersManager = new ChaptersManager();
     $affectedChapter = $chaptersManager->deleteChapter($_GET["id"]);
+
+    header('Location: index.php?action=adminChapter');
+}
+
+function updateChapters(){
+    $chaptersManager = new ChaptersManager();
+    $affectedChapter = $chaptersManager->updateChapter($_SESSION["id"],$_POST["title"],$_POST["chapter"]);
+    unset($_SESSION["id"]);
+
+    header('Location: index.php?action=adminChapter');
 }
 /* CHAPTERS */
 
@@ -84,7 +99,7 @@ function addComment(){
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
-        header('Location: index.php?action=chapters&id=' . $_GET['id']);
+        header('Location: index.php?action=chapters&amp;id=' . $_GET['id']);
     } 
 }
 

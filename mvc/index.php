@@ -98,7 +98,7 @@ try
         {
             if (isset($_POST["title"]) && isset($_POST["chapter"]))
             {
-                addChapter($_POST["title"],$_POST["chapter"]);
+                addChapters($_POST["title"],$_POST["chapter"]);
             }
             else
             {
@@ -111,6 +111,21 @@ try
             if (isset($_GET["id"]) && $_GET["id"] > 0) 
             {
                 deleteChapters($_GET["id"]);               
+            }
+            else
+            {
+                throw new Exception('Tous les champs ne sont pas remplis !');
+            }
+        }
+        elseif ($_GET["action"] == "updateChapters")
+        {
+            if (isset($_SESSION["adminLogin"]) && isset($_GET["id"]) && $_GET["id"] > 0) 
+            {
+                displayUpdateChaptersView($_GET["id"]);               
+            }
+            elseif  (isset($_SESSION["adminLogin"]) && isset($_SESSION["id"]) && isset($_POST["title"]) && isset($_POST["chapter"])) 
+            {
+                updateChapters($_SESSION["id"], $_POST["title"],$_POST["chapter"]);               
             }
             else
             {
