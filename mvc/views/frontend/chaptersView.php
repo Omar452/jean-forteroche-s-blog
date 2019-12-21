@@ -66,7 +66,7 @@ $description = "Page présentant les chapitres du roman Billet simple pour l'Ala
 
         <div class="xs-12-col offset-md-2 md-6-col container p-2">
         <button id="form-btn"  class="btn btn-primary">Laisser un commentaire</button>
-        <form id="comment-form" class="col-md-4 text-center"  method="post" action='index.php?action=addComment&amp;id=<?php echo $_GET["id"];?>'>
+        <form id="comment-form" class="col-md-4 text-center"  method="post" action='index.php?action=addComment&amp;id=<?= $_GET["id"]?>'>
             <div class="form-group">
                 <label for="pseudo">Votre pseudo:</label><br>
                 <input id="pseudo" type="text" name="pseudo">

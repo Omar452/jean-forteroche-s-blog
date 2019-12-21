@@ -1,14 +1,9 @@
-PAGE ADMIN
--page commentaire:suppression ou modération de commentaires
-
 GENERAL
 -CSS, JS...
 -verifier données envoyées en GET et POST avec html specialchars et les setters
 -ne pas faire suivre les pages d'administration par google
 
-1 afficher commentaires signalés + nbr de signalements
-2 ajouter les fonctions de suppression ou mod"ération de commentaires
-3 ajouter la suppression des commentaires en meme temps que la suppression d'un chapitre
+1 ajouter message lorsqu'aucun commentaire n'est signalé
 
 
 

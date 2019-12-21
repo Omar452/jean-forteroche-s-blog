@@ -46,7 +46,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
                         <div id="dropdown-menu" class="dropdown-menu bg-black" aria-labelledby="dropdownMenuLink">
                             <a class="list-group-item admin-link nav-link dropdown-item bg-black" href="index.php?action=adminChapter">Chapitres</a>
-                            <a class="list-group-item admin-link nav-link dropdown-item bg-black" href="#">Commentaires</a>
+                            <a class="list-group-item admin-link nav-link dropdown-item bg-black" href="index.php?action=adminComment">Commentaires</a>
                         </div>
                     </div>
                 </li>

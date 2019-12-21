@@ -18,7 +18,7 @@ try
         {
             if (isset($_GET["id"]) && $_GET["id"] > 0) 
             {
-                listChapters();
+                displayChaptersView($_GET["id"]);
             }
             else {
                 throw new Exception('Aucun identifiant de chapitre envoyé');
@@ -26,10 +26,10 @@ try
         }
         elseif ($_GET["action"] == "addComment")
         {
-            if (isset($_GET["id"]) && $_GET["id"] > 0) 
+            if (isset($_GET["id"]) && $_GET["id"] > 0)
             {
-                if (!empty($_POST['pseudo']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['pseudo'], $_POST['comment']);//vérifier les parametres
+                if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
+                    addComment($_GET['id'], $_POST['pseudo'], $_POST['comment']);
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
@@ -54,6 +54,10 @@ try
         /* BACKEND */
 
         /* LOG */
+        elseif ($_GET["action"] == "admin")
+        { 
+            displayAdminLoginView();
+        }
         elseif ($_GET["action"] == "login")
         {    
             logIn($_POST["adminLogin"], $_POST["adminPassword"]);
@@ -63,37 +67,19 @@ try
             logOut();
         }
         /* LOG */
-
-        /* DISPLAY PAGES */
-        elseif ($_GET["action"] == "admin")
-        { 
-            displayAdminLoginPage();
-        }
+        
+        /* CHAPTERS */
         elseif ($_GET["action"] == "adminChapter")
         {
             if (isset($_SESSION["adminLogin"]))
             {
-                displayAdminChapter();
+                displayAdminChapterView();
             }
             else
             {
                 throw new Exception('Connexion requise pour acceder a cette page');
             }                
         }
-        elseif ($_GET["action"] == "adminComments")
-        {
-            if (isset($_SESSION["adminLogin"]))
-            {
-                displayAdminComments(); 
-            }
-            else
-            {
-                throw new Exception('Connexion requise pour acceder a cette page');
-            }                
-        }
-        /* DISPLAY PAGES */
-        
-        /* CHAPTERS */
         elseif ($_GET["action"] == "addChapter")
         {
             if (isset($_POST["title"]) && isset($_POST["chapter"]))
@@ -105,17 +91,6 @@ try
                 throw new Exception('Tous les champs ne sont pas remplis !');
             }
             
-        }
-        elseif ($_GET["action"] == "deleteChapter")
-        {
-            if (isset($_GET["id"]) && $_GET["id"] > 0) 
-            {
-                deleteChapters($_GET["id"]);               
-            }
-            else
-            {
-                throw new Exception('Tous les champs ne sont pas remplis !');
-            }
         }
         elseif ($_GET["action"] == "updateChapters")
         {
@@ -132,9 +107,53 @@ try
                 throw new Exception('Tous les champs ne sont pas remplis !');
             }
         }
+        elseif ($_GET["action"] == "deleteChapter")
+        {
+            if (isset($_GET["id"]) && $_GET["id"] > 0) 
+            {
+                deleteChapters($_GET["id"]);               
+            }
+            else
+            {
+                throw new Exception('Tous les champs ne sont pas remplis !');
+            }
+        }
         /* CHAPTERS */
 
         /* COMMENTS */
+        elseif ($_GET["action"] == "adminComment")
+        {
+            if (isset($_SESSION["adminLogin"]))
+            {
+                displayAdminCommentView();
+            }
+            else
+            {
+                throw new Exception('Connexion requise pour acceder a cette page');
+            }
+        }
+        elseif ($_GET["action"] == "allowComment")
+        {
+            if (isset($_SESSION["adminLogin"]) && isset($_GET["id"]) && $_GET["id"] > 0 )
+            {
+                allowComment($_GET["id"]);
+            }
+            else
+            {
+                throw new Exception('Tous les champs ne sont pas renseignés !');
+            }
+        }
+        elseif ($_GET["action"] == "deleteComment")
+        {
+            if (isset($_SESSION["adminLogin"]) && isset($_GET["id"]) && $_GET["id"] > 0 )
+            {
+                deleteComment($_GET["id"]);
+            }
+            else
+            {
+                throw new Exception('Tous les champs ne sont pas renseignés !');
+            }
+        }
 
         /* COMMENTS */
 

@@ -6,11 +6,17 @@ require_once('models/ChaptersManager.php');
 
 
 /* LOG */
+function displayAdminLoginView(){
+
+    require("views/backend/adminLoginView.php");
+}
+
 function logIn($login, $password){
 
     $adminManager = new AdminManager();
     $data = $adminManager->getLogins($login);
-    if ($password == $data["passwd"])
+    $isPasswordCorrect = password_verify($password, $data["passwd"]);
+    if ($isPasswordCorrect)
     {
         $_SESSION["adminLogin"] = $login;
         displayHomePage();
@@ -31,15 +37,8 @@ function logOut(){
 }
 /* LOG */
 
-
-
-/* DISPLAY PAGES */
-function displayAdminLoginPage(){
-
-    require("views/backend/adminLoginView.php");
-}
-
-function displayAdminChapter(){
+/* CHAPTERS */
+function displayAdminChapterView(){
 
     $chaptersManager = new ChaptersManager();
     $allChaptersQuery = $chaptersManager->getAllChapters();
@@ -51,11 +50,7 @@ function displayUpdateChaptersView(){
     $_SESSION["id"] = $_GET["id"];
     require("views/backend/updateChaptersView.php");
 }
-/* DISPLAY PAGES */
 
-
-
-/* CHAPTERS */
 function addChapters(){
 
     $chaptersManager = new ChaptersManager();
@@ -75,6 +70,9 @@ function deleteChapters(){
     $chaptersManager = new ChaptersManager();
     $affectedChapter = $chaptersManager->deleteChapter($_GET["id"]);
 
+    $commentsManager = new CommentsManager();
+    $affectedComments = $commentsManager->deleteAllChapterComments($_GET["id"]);
+
     header('Location: index.php?action=adminChapter');
 }
 
@@ -88,32 +86,26 @@ function updateChapters(){
 /* CHAPTERS */
 
 
-
 /* COMMENTS */
-function addComment(){
-    
+function displayAdminCommentView(){
     $commentsManager = new CommentsManager();
-    $affectedLines = $commentsManager->createComment($_GET['id'], $_POST['pseudo'], $_POST['comment']);
-
-    if ($affectedLines == false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=chapters&amp;id=' . $_GET['id']);
-    } 
+    $commentsQuery = $commentsManager->getSignaledComments();
+    require("views/backend/adminCommentView.php");
 }
 
-function signalComments(){
-
+function allowComment(){
     $commentsManager = new CommentsManager();
-    $affectedComment = $commentsManager->signalComment($_GET["comment_id"]);
+    $affectedComment = $commentsManager->allowComment($_GET["id"]);
 
-    if ($affectedComment == false) {
-        throw new Exception('Impossible de signaler le commentaire !');
-    }
-    else {
-        require('index.php?action=chapters&id=' . $_GET['id']);
-    } 
+    header('Location: index.php?action=adminComment');
+}
+
+function deleteComment(){
+    $commentsManager = new CommentsManager();
+    $affectedComment = $commentsManager->deleteComment($_GET["id"]);
+
+    header('Location: index.php?action=adminComment');
+
 }
 /* COMMENTS */
 
