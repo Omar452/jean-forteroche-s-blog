@@ -5,43 +5,91 @@ $description = "Page réservée à l'administrateur du site";
 
 <?php ob_start(); ?>
 
-<div id="admin-chapter-div" class="row">
-<nav id="side-nav" class="col-sm-2 bg-black w-100 p-0 text-center">
-    <div class="sidebar-header">
-        <p class="py-3">CHAPITRES</p>
+<div id="chapter-div " class="col-sm-12 container">
+
+    <div class="dropdown show my-4">
+
+        <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" 
+        aria-haspopup="true" aria-expanded="false">CHAPITRES</a>
+        
+
+        <div class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+            <?php
+            while($data = $allChaptersQuery->fetch())
+            {
+            ?>
+                <a class="nav-link list-item dropdown-item " href='index.php?action=adminChapter&amp;id=<?php echo $data['id'];?>'><?php echo $data['title'];?></a> <br> 
+
+            <?php
+            }
+            $allChaptersQuery->closeCursor();
+            ?> 
+        </div>
+        
     </div>
-    
-    <ul class="list-group list-group-flush list-unstyled w-100">
+
+    <!-- affiche le chapitre demandé -->
     <?php
-    while($data = $allChaptersQuery->fetch())
+    while($data2 = $chapterQuery->fetch())
     {
     ?>
-        <li class="list-group-item-flush w-100 py-2">
-            <p><?php echo $data['title'];?></p> <br>
-            <div class="row">
-                <a class="badge badge-warning" href='index.php?action=updateChapters&amp;id=<?php echo $data['id'];?>'>Modifier</a> 
-                <a class="badge badge-danger" href='index.php?action=deleteChapter&amp;id=<?php echo $data['id'];?>'>Supprimer</a>
+        <div class="container-fluid text-justify">
+            <div d-flex >
+                <h2> <?php echo $data2["title"];?> </h2>
+                <a class="badge badge-warning text-white" href='index.php?action=updateChapters&amp;id=<?php echo $data2['id'];?>'>Modifier</a> 
+                <a class="badge badge-danger" href='index.php?action=deleteChapter&amp;id=<?php echo $data2['id'];?>'>Supprimer</a>
             </div>
-        </li>
+            
+            <p> <?php echo $data2["chapter"];?> </p>
+        </div>      
     <?php
     }
-    $allChaptersQuery->closeCursor();
-    ?> 
-    </ul>
-</nav>
-
-<div id="addChapter-div" class="xs-12-col offset-md-2 md-6-col container p-2">
-    <div>
-        <form  class="col-md-4 text-center"  method="post" action='index.php?action=addChapter'>
-            <input id="title" type="text" class="form-control" name="title" placeholder="Titre du chapitre" required><br>
-            <textarea rows=30 id="chapter" class="form-control" name="chapter" ></textarea><br>
-            <input class="btn btn-primary" type="submit" value="Valider">
-        </form>
+    $chapterQuery->closeCursor();
+    ?>
     </div>
-</div>
+
+    <div class="container mb-5">
+        <hr>
+    </div>
+    
+
+    <div id="admin-comment-div" class="container-fluid mb-5">
+        <button id="form-btn"  class="btn btn-warning mb-4 text-white">Tous les commentaires signalés</button>
+        <?php
+        while($data3 = $commentsQuery->fetch())
+        {
+        ?>
+            <div class="commentaires">
+                <p>Posté par : <?php echo htmlspecialchars($data3["pseudo"]);?>, le <?php echo $data3["date_fr"];?></p> <br>
+                <p><?php echo htmlspecialchars($data3["comment"]);?></p> <br>
+                <p class="text-danger">Ce commentaire a été signalé <?= $data3["signal_number"]?> fois.</p>
+                <a  class="badge badge-info text-white" href="index.php?action=allowComment&amp;id=<?=$data3["id"]?>">Modérer</a>
+                <a  class="badge badge-danger text-white" href="index.php?action=deleteComment&amp;id=<?=$data3["id"]?>">Supprimer</a>      
+            </div>
+            <?php    
+        }
+        $commentsQuery->closeCursor();
+        ?>
+    </div>
+
+    <div class="container mb-5">
+        <hr>
+    </div>
+
+
+    <div id="addChapter-div" class="container-fluid my-5">
+        <button id="form-btn"  class="btn btn-info mb-4">Ajouter un chapitre</button>
+        <div>
+            <form  class="col-md-12 text-center"  method="post" action='index.php?action=addChapter'>
+                <input id="title" type="text" class="form-control" name="title" placeholder="Titre du chapitre" required><br>
+                <textarea rows=30 id="chapter" class="form-control" name="chapter" ></textarea><br>
+                <input class="btn btn-info" type="submit" value="Valider">
+            </form>
+        </div>
+    </div>
 
 </div>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('views/template.php'); ?>

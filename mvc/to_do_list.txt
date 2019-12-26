@@ -1,9 +1,6 @@
-GENERAL
--CSS, JS...
--verifier données envoyées en GET et POST avec html specialchars et les setters
--ne pas faire suivre les pages d'administration par google
-
-1 ajouter message lorsqu'aucun commentaire n'est signalé
+2 revoir feuille de style + responsive
+6 empecher trackage des pages d'administration
+7 mettre le site en ligne
 
 
 

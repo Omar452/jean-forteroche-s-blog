@@ -1,79 +1,40 @@
 <?php
+
 session_start();
-require('controllers/frontendController.php');
-require('controllers/backendController.php');
+require_once('controllers/AdminController.php');
+require_once('controllers/ChaptersController.php');
+require_once('controllers/CommentsController.php');
+
+$adminController = new AdminController();
+$chaptersController = new ChaptersController();
+$commentsController = new CommentsController();
 
 try
 {
     
     if (isset($_GET["action"]))
     {
-
-        /* FRONTEND */
+        $_GET["action"] = htmlspecialchars($_GET["action"]);
+        /* CHAPTERS */
         if ($_GET["action"] == "home")
         {
-            displayHomePage();
+            $chaptersController->displayHomePage();
         }
         elseif ($_GET["action"] == "chapters")
         {
             if (isset($_GET["id"]) && $_GET["id"] > 0) 
             {
-                displayChaptersView($_GET["id"]);
+                $chaptersController->displayChaptersView($_GET["id"]);
             }
             else {
                 throw new Exception('Aucun identifiant de chapitre envoyé');
             }
         }
-        elseif ($_GET["action"] == "addComment")
-        {
-            if (isset($_GET["id"]) && $_GET["id"] > 0)
-            {
-                if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['pseudo'], $_POST['comment']);
-                }
-                else {
-                    throw new Exception('Tous les champs ne sont pas remplis !');
-                }
-            }
-        }
-        elseif ($_GET["action"] == "signalComment")
-        {
-            if (isset($_GET["id"]) && $_GET["id"] > 0 && isset($_GET["comment_id"]) && $_GET["comment_id"] > 0 ) 
-            {
-                signalComments($_GET["comment_id"]);
-            }
-            else
-            {
-                throw new Exception('Aucun identifiant de chapitre ou de commentaire envoyé');
-            }
-        }
-        /* FRONTEND */
-
-
-
-        /* BACKEND */
-
-        /* LOG */
-        elseif ($_GET["action"] == "admin")
-        { 
-            displayAdminLoginView();
-        }
-        elseif ($_GET["action"] == "login")
-        {    
-            logIn($_POST["adminLogin"], $_POST["adminPassword"]);
-        }
-        elseif ($_GET["action"] == "logout")
-        {
-            logOut();
-        }
-        /* LOG */
-        
-        /* CHAPTERS */
         elseif ($_GET["action"] == "adminChapter")
         {
-            if (isset($_SESSION["adminLogin"]))
+            if (isset($_SESSION["adminLogin"]) && isset($_GET["id"]) && $_GET["id"] > 0)
             {
-                displayAdminChapterView();
+                $chaptersController->displayAdminChapterView($_GET["id"]);
             }
             else
             {
@@ -84,7 +45,7 @@ try
         {
             if (isset($_POST["title"]) && isset($_POST["chapter"]))
             {
-                addChapters($_POST["title"],$_POST["chapter"]);
+                $chaptersController->addChapters($_POST["title"],$_POST["chapter"]);
             }
             else
             {
@@ -96,11 +57,11 @@ try
         {
             if (isset($_SESSION["adminLogin"]) && isset($_GET["id"]) && $_GET["id"] > 0) 
             {
-                displayUpdateChaptersView($_GET["id"]);               
+                $chaptersController->displayUpdateChaptersView($_GET["id"]);               
             }
             elseif  (isset($_SESSION["adminLogin"]) && isset($_SESSION["id"]) && isset($_POST["title"]) && isset($_POST["chapter"])) 
             {
-                updateChapters($_SESSION["id"], $_POST["title"],$_POST["chapter"]);               
+                $chaptersController->updateChapters($_SESSION["id"], $_POST["title"],$_POST["chapter"]);               
             }
             else
             {
@@ -111,32 +72,44 @@ try
         {
             if (isset($_GET["id"]) && $_GET["id"] > 0) 
             {
-                deleteChapters($_GET["id"]);               
+                $chaptersController->deleteChapters($_GET["id"]);               
             }
             else
             {
                 throw new Exception('Tous les champs ne sont pas remplis !');
             }
-        }
+        } 
         /* CHAPTERS */
-
+        
         /* COMMENTS */
-        elseif ($_GET["action"] == "adminComment")
+        elseif ($_GET["action"] == "addComment")
         {
-            if (isset($_SESSION["adminLogin"]))
+            if (isset($_GET["id"]) && $_GET["id"] > 0)
             {
-                displayAdminCommentView();
+                if (isset($_POST['pseudo']) && isset($_POST['comment'])) {
+                    $commentsController->addComment($_GET['id'], $_POST['pseudo'], $_POST['comment']);
+                }
+                else {
+                    throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            }
+        }
+        elseif ($_GET["action"] == "signalComment")
+        {
+            if (isset($_GET["id"]) && $_GET["id"] > 0 ) 
+            {
+                $commentsController->signalComments();
             }
             else
             {
-                throw new Exception('Connexion requise pour acceder a cette page');
+                throw new Exception('Aucun identifiant de chapitre ou de commentaire envoyé');
             }
         }
         elseif ($_GET["action"] == "allowComment")
         {
             if (isset($_SESSION["adminLogin"]) && isset($_GET["id"]) && $_GET["id"] > 0 )
             {
-                allowComment($_GET["id"]);
+                $commentsController->allowComment($_GET["id"]);
             }
             else
             {
@@ -147,22 +120,33 @@ try
         {
             if (isset($_SESSION["adminLogin"]) && isset($_GET["id"]) && $_GET["id"] > 0 )
             {
-                deleteComment($_GET["id"]);
+                $commentsController->deleteComment($_GET["id"]);
             }
             else
             {
                 throw new Exception('Tous les champs ne sont pas renseignés !');
             }
         }
-
         /* COMMENTS */
 
-
-        /* BACKEND */
+        /* ADMIN */
+        elseif ($_GET["action"] == "admin")
+        { 
+            $adminController->displayAdminLoginView();
+        }
+        elseif ($_GET["action"] == "login")
+        {    
+            $adminController->logIn($_POST["adminLogin"], $_POST["adminPassword"]);
+        }
+        elseif ($_GET["action"] == "logout")
+        {
+            $adminController->logOut();
+        }
+        /* ADMIN */
     }
     else
     {
-        displayHomePage();
+        $chaptersController->displayHomePage();
     } 
 }
 catch(Exception $e) {

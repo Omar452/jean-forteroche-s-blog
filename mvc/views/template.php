@@ -16,6 +16,14 @@
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+    <!-- Tiny MCE -->
+    <script src="https://cdn.tiny.cloud/1/zxzv60b5q0gc5d3wbi9ezdafwuzak7bbql5pmuzmxut75dr8/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#chapter'
+      });
+    </script>
+
 </head>
 
 <body id="page-top">
@@ -23,7 +31,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-black" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Jean Forteroche</a>
+            <a class="navbar-brand js-scroll-trigger" href="index.php">Jean Forteroche</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -41,14 +49,7 @@
                 {
                 ?>
                 <li class="nav-item">
-                    <div class="dropdown show">
-                        <a class="nav-link dropdown-toggle js-scroll-trigger" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
-                        <div id="dropdown-menu" class="dropdown-menu bg-black" aria-labelledby="dropdownMenuLink">
-                            <a class="list-group-item admin-link nav-link dropdown-item bg-black" href="index.php?action=adminChapter">Chapitres</a>
-                            <a class="list-group-item admin-link nav-link dropdown-item bg-black" href="index.php?action=adminComment">Commentaires</a>
-                        </div>
-                    </div>
+                    <a class="nav-link js-scroll-trigger" href="index.php?action=adminChapter&amp;id=1">Admin</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="index.php?action=logout"><i class="fas fa-sign-out-alt"></i> Se deconnecter</a>
@@ -68,26 +69,29 @@
             </div>
         </div>
     </nav>
-
-    <?= $content ?>
+    
+    <div id="page-container">
+        <?= $content ?> 
+    </div>
+    
 
     <!-- Footer -->
-    <footer id="footer" class="bg-black small text-center text-white-50">
-        <div class="d-flex justify-content-around py-2">
-            <div class="container">
+    <footer id="footer" class="bg-black small text-center text-white-50 sticky-bottom">
+        <div id="footer-first-div">
+            <div>
                 <p>CONTACT</p>
-                
-                <a href="mailto:jeanforteroche@fictif.fr"><i class="far fa-envelope"></i> jeanforteroche@fictif.fr</a></li>
-                
+                <ul class="list-unstyled">
+                    <li><a href="mailto:jeanforteroche@fictif.fr"><i class="far fa-envelope"></i> jeanforteroche@fictif.fr</a></li>
+                </ul>
             </div>
-            <div class="container">
+            <div>
                 <p>RESEAUX SOCIAUX</p>
                 <ul class="list-unstyled">
                     <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
                     <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
                 </ul>
             </div>
-            <div class="container">
+            <div>
                 <p>INFOS UTILES</p>
                 <ul class="list-unstyled">
                     <li><a href="#">Mentions légales</a></li>

@@ -7,7 +7,7 @@ $description = "Page de connexion réservée à l'administrateur du site";
 
 <div id="form-connexion-div">
     <div>
-        <form class="text-center" method="post" action="index.php?action=login">
+        <form class="text-center" method="post" action="index.php?action=login&amp;id=1">
             <?php
             if (isset($_SESSION["error"]))
             {
@@ -21,14 +21,11 @@ $description = "Page de connexion réservée à l'administrateur du site";
             ?>
             <input type="text" class="form-control" name="adminLogin" placeholder="Votre identifiant" required><br>
             <input type="password" class="form-control" name="adminPassword" placeholder="Votre mot de passe" required><br>
-            <input class="btn btn-primary" type="submit" value="Se connecter">
-            <div id="formFooter">
-                <a style="color:red;" class="underlineHover" href="#">Mot de passe oublié?</a>
-            </div>  
+            <input class="btn btn-primary" type="submit" value="Se connecter"> 
         </form>
     </div>
 </div>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('views/template.php'); ?>

@@ -16,11 +16,11 @@ $description = "Site du roman Billet simple pour l'Alaska du célèbre écrivain
             Alors, êtes vous pret à vous envoler pour l'Alaska?
         </p>
     
-        <a href="index.php?action=chapters&amp;id=1" class="btn btn-primary js-scroll-trigger">Embarquez ici</a>
+        <a href="index.php?action=chapters&amp;id=1" class="btn btn-info js-scroll-trigger">Embarquez ici</a>
         </div>
     </div>
 </header>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('views/template.php'); ?>

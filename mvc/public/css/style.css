@@ -1,3 +1,57 @@
+/* GENERAL */
+body {
+  font-family: 'Nunito';
+  width: 100%;
+  letter-spacing: 0.0625em;
+  padding-top: 88px ;
+  overflow-x: hidden;
+}
+
+a {
+  color: #64a19d;
+}
+
+a:focus, a:hover {
+  text-decoration: none;
+  color: #3c6360;
+}
+
+.bg-black {
+  background-color: #161616 !important;
+}
+
+
+.btn {
+  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+  padding: 1rem 1.5rem;
+  font-family: 'Varela Round';
+  font-size: 80%;
+  text-transform: uppercase;
+  letter-spacing: .15rem;
+  border: 0;
+}
+
+.btn-primary {
+  background-color: #64a19d;
+}
+
+.btn-primary:hover {
+  background-color: #4f837f;
+}
+
+.btn-primary:focus {
+  background-color: #4f837f;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: #467370 !important;
+}
+/* GENERAL */
+
+
+
+/* NAV */
 #mainNav {
   min-height: 56px;
 }
@@ -23,13 +77,11 @@
   color: #64a19d;
 }
 
-
 @media (min-width: 992px) {
   #mainNav {
     padding-top: 0;
     padding-bottom: 0;
     border-bottom: none;
-    background-color: transparent;
     transition: background-color 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {
@@ -67,7 +119,9 @@
     border-bottom: 0.25rem solid #64a19d;
   }
 }
+/* NAV */
 
+/* MASTHEAD */
 .masthead {
   position: relative;
   width: 100%;
@@ -97,76 +151,6 @@
   color: white;
 }
 
-.commentaires{
-  max-width:80%;
-  padding: 15px;
-  margin: 20px;
-  line-height: 10px;
-  background-color: rgb(238, 234, 234);
-  box-shadow: 2px 2px 5px #161616;
-  border-radius: 5px;
-}
-
-.commentaires a{
-  color: red;
-  font-style: italic;
-  font-size: 0.7rem;
-}
-
-#comment-form{
-  box-shadow: 2px 2px 5px #161616;
-  background-color: rgb(238, 234, 234);
-  border-radius: 5px;
-  padding: 20px;
-  margin: 40px 0;
-}
-
-#form-connexion-div{
-  width: 100%;
-  height: auto;
-  min-height: 35rem;
-  padding: 15rem 0;
-  background-image: url("https://millionmilesecrets.com/wp-content/uploads/shutterstock_1150411130.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-}
-
-#form-connexion-div div{
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-#form-connexion-div div form{
-  width: 30%;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 5px;
-  box-shadow: 4px 4px 10px;
-  padding: 30px;
-}
-
-#dropdown-menu{
-  border-radius: 0;
-  padding: 0;
-  border: none;
-  margin: 0;
-  color: white;
-}
-
-#dropdown-menu >:hover{
-  background-color: unset;
-}
-
-.admin-link{
-  padding: 10px 20px !important;
-}
-
 @media (min-width: 768px) {
   .masthead h1 {
     font-size: 2.5rem;
@@ -190,85 +174,68 @@
     font-size: 1rem;
   }
 }
+/* MASTHEAD */
 
-.btn {
-  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
-  padding: 1rem 1.5rem;
-  font-family: 'Varela Round';
-  font-size: 80%;
-  text-transform: uppercase;
-  letter-spacing: .15rem;
-  border: 0;
+/* COMMENTS */
+.commentaires{
+  max-width:80%;
+  padding: 15px;
+  margin: 30px 0;
+  line-height: 10px;
+  background-color: rgb(238, 234, 234);
+  box-shadow: 2px 2px 5px #161616;
+  border-radius: 5px;
 }
 
-.btn-primary {
-  background-color: #64a19d;
+.commentaires a{
+  color: red;
+  font-style: italic;
+  font-size: 0.7rem;
 }
 
-.btn-primary:hover {
-  background-color: #4f837f;
+#comment-form{
+  box-shadow: 2px 2px 5px #161616;
+  background-color: rgb(238, 234, 234);
+  border-radius: 5px;
+  padding: 5px 0;
+  margin: 20px 0;
 }
-
-.btn-primary:focus {
-  background-color: #4f837f;
-  color: white;
-}
-
-.btn-primary:active {
-  background-color: #467370 !important;
-}
+/* COMMENTS */
 
 
-body {
-  font-family: 'Nunito';
-  letter-spacing: 0.0625em;
-  padding-top: 85px ;
-  overflow-x: hidden;
+
+/* SIDENAV */
+
+/* SIDENAV */
+
+/* LOGIN FORM */
+#form-connexion-div{
+  width: 100%;
+  height: auto;
+  min-height: 35rem;
+  padding: 15rem 0;
+  background-image: url("https://millionmilesecrets.com/wp-content/uploads/shutterstock_1150411130.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+#form-connexion-div div{
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-a {
-  color: #64a19d;
-}
-
-a:focus, a:hover {
-  text-decoration: none;
-  color: #3c6360;
-}
-
-.bg-black {
-  background-color: #161616 !important;
-}
-
-.bg-primary {
-  background-color: #64a19d !important;
-}
-
-.text-primary {
-  color: #64a19d !important;
-}
-
-footer {
-  padding: 2rem 0;
-}
-#side-nav div{
-  border: 1px solid #111;
-  color: #555;
-}
-
-#side-nav div p{
-  margin: 0;
-}
-
-#side-nav ul li{
-  border-bottom: 1px solid #111;
-}
-
-#side-nav ul li a{
-  color: white;
-}
-
-#side-nav ul li a:hover{
-  color: #64a19d;
+#form-connexion-div div form{
+  width: 30%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  box-shadow: 4px 4px 10px;
+  padding: 30px;
 }
 
 #formError{
@@ -284,3 +251,29 @@ footer {
   margin: 0;
   padding: 1px;
 }
+/* LOGIN FORM */
+
+#page-container{
+  width: 100%;
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+#footer-first-div{
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+@media (max-width: 550px) {
+  #footer-first-div{
+    flex-direction: column;
+  }
+}
+/* FOOTER */
+
+
