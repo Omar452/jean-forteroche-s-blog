@@ -14,21 +14,24 @@ class AdminController
 
     public function logIn($login, $password){
 
+        $_SESSION["succes"] = "login";
+
         $adminManager = new AdminManager();
         $data = $adminManager->getLogins($login);
         $isPasswordCorrect = password_verify($password, $data["passwd"]);
 
-        $chaptersController = new ChaptersController();
+        $chaptersManager = new ChaptersManager();
+        $firstChapterId = $chaptersManager->getFirstChapterId();
 
         if ($isPasswordCorrect)
         {
             $_SESSION["adminLogin"] = $login;
-            $chaptersController->displayAdminChapterView($_GET["id"]);
+            header('Location: index.php?action=adminChapter&id=' . $firstChapterId);
         }
         else
         {
             $_SESSION["error"] = true;
-            require("views/backend/adminLoginView.php");
+            header('Location: index.php?action=admin');
         }
     }
 

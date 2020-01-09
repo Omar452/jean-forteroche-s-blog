@@ -5,6 +5,60 @@ $description = "Page réservée à l'administrateur du site";
 
 <?php ob_start(); ?>
 
+<?php
+    if (isset($_SESSION["succes"]))
+    {
+    ?>
+        <div id="succesMessage" class="text-center alert alert-success alert-link m-3 p-3" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php
+                switch($_SESSION["succes"])
+                {
+                    case "addChapter":
+                        echo "<p>Chapitre ajouté avec succès!</p>";
+                        break;
+                    case "updateChapter":
+                        echo "<p>Chapitre modifié avec succès!</p>";
+                        break;
+                    case "deleteChapter":
+                        echo "<p>Chapitre supprimé avec succès!</p>";
+                        break;
+                    case "allowComment":
+                        echo "<p>Ce commentaire a été retiré des commentaires signalés!</p>";
+                        break;
+                    case "deleteComment":
+                        echo "<p>Commentaire supprimé avec succès!</p>";
+                        break;
+                }
+            ?>
+        </div> 
+    <?php
+    unset($_SESSION["succes"]);
+    }
+?>
+
+<?php
+    if (isset($_SESSION["succes"]))
+    {
+    ?>
+        <div id="succesMessage" class="text-center alert alert-success alert-link m-3 p-3" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php
+                if($_SESSION["succes"] == "login")
+                {
+                    echo "<p>Bienvenue M. Forteroche</p>";
+                }
+                elseif($_SESSION["succes"] == "signalComment")
+                {
+                    echo "<p>Le commentaire a été signalé avec succès!</p>";
+                }
+            ?>
+        </div> 
+    <?php
+    unset($_SESSION["succes"]);
+    }
+?>
+
 <div id="chapter-div " class="col-sm-12 container">
 
     <div class="dropdown show my-4">

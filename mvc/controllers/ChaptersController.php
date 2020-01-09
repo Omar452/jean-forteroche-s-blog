@@ -45,6 +45,9 @@ class ChaptersController
     }
     
     public function addChapters(){
+
+        $_SESSION["succes"] = "addChapter";
+
         $_POST["title"] = htmlspecialchars($_POST["title"]);
         $chaptersManager = new ChaptersManager();
         $affectedLines = $chaptersManager->createChapter($_POST["title"],$_POST["chapter"]);
@@ -60,6 +63,9 @@ class ChaptersController
     }
     
     public function deleteChapters(){
+
+        $_SESSION["succes"] = "deleteChapter";
+
         $chaptersManager = new ChaptersManager();
         $affectedChapter = $chaptersManager->deleteChapter($_GET["id"]);
         $firstChapterId = $chaptersManager->getFirstChapterId();
@@ -68,6 +74,9 @@ class ChaptersController
     }
     
     public function updateChapters(){
+
+        $_SESSION["succes"] = "updateChapter";
+
         $_POST["title"] = htmlspecialchars($_POST["title"]);
         $chaptersManager = new ChaptersManager();
         $affectedChapter = $chaptersManager->updateChapter($_SESSION["id"],$_POST["title"],$_POST["chapter"]);

@@ -9,6 +9,8 @@ class CommentsController
 {
     public function addComment(){
 
+        $_SESSION["succes"] = "addComment";
+
         $_POST["pseudo"] = htmlspecialchars($_POST["pseudo"]);
         $_POST["comment"] = htmlspecialchars($_POST["comment"]);
     
@@ -26,6 +28,8 @@ class CommentsController
     }
     
     public function signalComments(){
+
+        $_SESSION["succes"] = "signalComment";
     
         $commentsManager = new CommentsManager();
         $affectedComment = $commentsManager->signalComment($_GET["comment_id"]);
@@ -41,18 +45,29 @@ class CommentsController
     }
 
     public function allowComment(){
+
+        $_SESSION["succes"] = "allowComment";
+
         $commentsManager = new CommentsManager();
         $affectedComment = $commentsManager->allowComment($_GET["id"]);
     
-        header('Location: index.php?action=adminChapter&amp;id=1');
+        $chaptersManager = new ChaptersManager();
+        $firstChapterId = $chaptersManager->getFirstChapterId();
+    
+        header('Location: index.php?action=adminChapter&id=' . $firstChapterId);
     }
     
     public function deleteComment(){
+
+        $_SESSION["succes"] = "deleteComment";
+
         $commentsManager = new CommentsManager();
         $affectedComment = $commentsManager->deleteComment($_GET["id"]);
     
-        header('Location: index.php?action=adminChapter&amp;id=1');
+        $chaptersManager = new ChaptersManager();
+        $firstChapterId = $chaptersManager->getFirstChapterId();
     
+        header('Location: index.php?action=adminChapter&id=' . $firstChapterId);
     }
 
 }

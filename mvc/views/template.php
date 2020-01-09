@@ -79,14 +79,12 @@
     <footer id="footer" class="bg-black small text-center text-white-50 sticky-bottom">
         <div id="footer-first-div">
             <div>
-            <?php print_r($_SESSION)?>;
                 <p>CONTACT</p>
                 <ul class="list-unstyled">
                     <li><a href="mailto:jeanforteroche@fictif.fr"><i class="far fa-envelope"></i> jeanforteroche@fictif.fr</a></li>
                 </ul>
             </div>
             <div>
-            <?php print_r($_GET)?>
                 <p>RESEAUX SOCIAUX</p>
                 <ul class="list-unstyled">
                     <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>

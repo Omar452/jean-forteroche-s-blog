@@ -181,6 +181,11 @@ a:focus, a:hover {
 
 /* MAIN */
 
+.dropdown-menu a:hover{
+  background-color: #117A8B;
+  color: white;
+}
+
 /* COMMENTS */
 .commentaires{
   padding: 15px;
@@ -201,7 +206,7 @@ a:focus, a:hover {
   box-shadow: 2px 2px 5px #161616;
   background-color: rgb(238, 234, 234);
   border-radius: 5px;
-  padding: 5px 0;
+  padding: 10px;
   margin: 20px 0;
 }
 /* COMMENTS */
