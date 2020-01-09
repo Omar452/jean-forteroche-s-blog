@@ -35,7 +35,6 @@ class AdminController
     public function logOut(){
 
         unset($_SESSION["adminLogin"]);
-        session_destroy();
 
         $chaptersController = new ChaptersController();
     

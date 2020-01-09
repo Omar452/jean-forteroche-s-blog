@@ -7,12 +7,13 @@ $description = "Page de connexion réservée à l'administrateur du site";
 
 <div id="form-connexion-div">
     <div>
-        <form class="text-center" method="post" action="index.php?action=login&amp;id=1">
+        <form class="text-center col-10 col-sm-5" method="post" action="index.php?action=login&amp;id=1">
             <?php
             if (isset($_SESSION["error"]))
             {
             ?>
-                <div id="formError" class="container text-center">
+                <div id="formError" class="container text-center alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <p id="error-msg">Identifiant ou mot de passe incorrect</p>
                 </div> 
             <?php

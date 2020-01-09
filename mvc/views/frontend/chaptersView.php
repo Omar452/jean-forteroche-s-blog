@@ -46,8 +46,8 @@ $chapterQuery->closeCursor();
 </div> 
 
 <!-- affiche les commentaires en fonction du chapitre -->
-<div class="container-fluid">
-    <button id="comment-btn"  class="btn btn-info mb-4">Voir les commentaires</button>
+<div class="container-fluid mb-5">
+    <button id="comment-btn"  class="btn btn-warning mb-4 text-white">Voir les commentaires</button>
 
 <?php
 while($data3 = $commentsQuery->fetch())
@@ -65,20 +65,16 @@ $commentsQuery->closeCursor();
 ?>
 </div>
 
-
-
-
-
 <div class="container-fluid">
     <button id="form-btn"  class="btn btn-info">Laisser un commentaire</button>
-    <form id="comment-form" class="col-md-3 text-center"  method="post" action='index.php?action=addComment&amp;id=<?= $_GET["id"]?>'>
+    <form id="comment-form"  method="post" action='index.php?action=addComment&amp;id=<?= $_GET["id"]?>'>
         <div class="form-group">
             <label for="pseudo">Votre pseudo:</label><br>
-            <input id="pseudo" type="text" name="pseudo">
+            <input id="pseudo" class="form-control" type="text" name="pseudo">
         </div>
         <div class="form-group">
             <label class="align-top" for="comment">Votre commentaire:</label><br>
-            <textarea id="comment" name="comment" rows=5></textarea>
+            <textarea id="comment" class="form-control" name="comment" rows=3></textarea>
         </div>
         <input class="btn btn-info" id="submit" type="submit">
     </form> 

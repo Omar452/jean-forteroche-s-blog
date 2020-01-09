@@ -1,9 +1,12 @@
 /* GENERAL */
 body {
+  margin: 0;
   font-family: 'Nunito';
   width: 100%;
+  min-height: 100vh;
+  min-width: 300px;
   letter-spacing: 0.0625em;
-  padding-top: 88px ;
+  padding-top: 75px ;
   overflow-x: hidden;
 }
 
@@ -23,7 +26,7 @@ a:focus, a:hover {
 
 .btn {
   box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem;
   font-family: 'Varela Round';
   font-size: 80%;
   text-transform: uppercase;
@@ -127,7 +130,7 @@ a:focus, a:hover {
   width: 100%;
   height: auto;
   min-height: 35rem;
-  padding: 15rem 0;
+  padding: 5rem 0;
   background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0%, rgba(22, 22, 22, 0.7) 75%, #161616 100%), url("https://millionmilesecrets.com/wp-content/uploads/shutterstock_1150411130.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -176,12 +179,13 @@ a:focus, a:hover {
 }
 /* MASTHEAD */
 
+/* MAIN */
+
 /* COMMENTS */
 .commentaires{
-  max-width:80%;
   padding: 15px;
-  margin: 30px 0;
-  line-height: 10px;
+  margin-bottom: 20px;
+  width: 100%;
   background-color: rgb(238, 234, 234);
   box-shadow: 2px 2px 5px #161616;
   border-radius: 5px;
@@ -202,12 +206,6 @@ a:focus, a:hover {
 }
 /* COMMENTS */
 
-
-
-/* SIDENAV */
-
-/* SIDENAV */
-
 /* LOGIN FORM */
 #form-connexion-div{
   width: 100%;
@@ -227,7 +225,6 @@ a:focus, a:hover {
 }
 
 #form-connexion-div div form{
-  width: 30%;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -239,9 +236,9 @@ a:focus, a:hover {
 }
 
 #formError{
-  color: white;
+  
   margin-bottom: 10px;
-  background-color: rgb(251, 118, 10);
+  
   padding: 5px;
   border-radius: 5px;
 }
@@ -256,6 +253,8 @@ a:focus, a:hover {
 #page-container{
   width: 100%;
 }
+
+/* MAIN */
 
 /* FOOTER */
 footer {

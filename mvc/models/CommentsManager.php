@@ -59,6 +59,7 @@ class CommentsManager extends Manager
         return $deletedComment;    
     }
 
+    /*
     public function deleteAllChapterComments($chapter_id){
 
         $db = $this->dbConnect();
@@ -66,4 +67,5 @@ class CommentsManager extends Manager
         $deletedComments->execute(array($chapter_id));
         return $deletedComment; 
     }
+    */
 }

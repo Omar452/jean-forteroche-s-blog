@@ -1,7 +1,0 @@
-2 revoir feuille de style + responsive
-6 empecher trackage des pages d'administration
-7 mettre le site en ligne
-
-
-
-

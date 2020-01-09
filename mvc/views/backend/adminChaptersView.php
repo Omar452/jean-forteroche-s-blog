@@ -78,9 +78,9 @@ $description = "Page réservée à l'administrateur du site";
 
 
     <div id="addChapter-div" class="container-fluid my-5">
-        <button id="form-btn"  class="btn btn-info mb-4">Ajouter un chapitre</button>
+        <button id="form-btn"  class="btn btn-info">Ajouter un chapitre</button>
         <div>
-            <form  class="col-md-12 text-center"  method="post" action='index.php?action=addChapter'>
+            <form  class="col-md-12 text-center p-5"  method="post" action='index.php?action=addChapter'>
                 <input id="title" type="text" class="form-control" name="title" placeholder="Titre du chapitre" required><br>
                 <textarea rows=30 id="chapter" class="form-control" name="chapter" ></textarea><br>
                 <input class="btn btn-info" type="submit" value="Valider">

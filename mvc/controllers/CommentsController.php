@@ -21,7 +21,7 @@ class CommentsController
             throw new Exception('Impossible d\'ajouter le commentaire !');
         }
         else {
-            $chaptersController->displayChaptersView();
+            header('Location: index.php?action=chapters&id=' . $_GET['id']);
         } 
     }
     

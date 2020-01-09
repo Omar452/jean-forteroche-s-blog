@@ -42,14 +42,14 @@
                     <a class="nav-link js-scroll-trigger" href="index.php?action=home">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="index.php?action=chapters&amp;id=1">Chapitres</a>
+                    <a class="nav-link js-scroll-trigger" href="index.php?action=chapters&amp;id=<?=$_SESSION["firstChapter"]?>">Chapitres</a>
                 </li>
                 <?php
                 if (isset($_SESSION["adminLogin"]))
                 {
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="index.php?action=adminChapter&amp;id=1">Admin</a>
+                    <a class="nav-link js-scroll-trigger" href="index.php?action=adminChapter&amp;id=<?=$_SESSION["firstChapter"]?>">Admin</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="index.php?action=logout"><i class="fas fa-sign-out-alt"></i> Se deconnecter</a>
@@ -79,12 +79,14 @@
     <footer id="footer" class="bg-black small text-center text-white-50 sticky-bottom">
         <div id="footer-first-div">
             <div>
+            <?php print_r($_SESSION)?>;
                 <p>CONTACT</p>
                 <ul class="list-unstyled">
                     <li><a href="mailto:jeanforteroche@fictif.fr"><i class="far fa-envelope"></i> jeanforteroche@fictif.fr</a></li>
                 </ul>
             </div>
             <div>
+            <?php print_r($_GET)?>
                 <p>RESEAUX SOCIAUX</p>
                 <ul class="list-unstyled">
                     <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
@@ -106,7 +108,7 @@
     </footer>
 
     <!-- JQUERY -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="public/js/script.js"></script>

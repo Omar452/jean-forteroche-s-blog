@@ -4,6 +4,15 @@ require_once('Manager.php');
 
 class ChaptersManager extends Manager
 {
+    public function getFirstChapterId()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id FROM chapters LIMIT 1');
+        $id = $req->fetch();
+
+        return intval($id);
+    }
+
     public function getAllChapters()
     {
         $db = $this->dbConnect();
@@ -27,7 +36,7 @@ class ChaptersManager extends Manager
             "title" => $chapter_title,
             "chapter" => $chapter_content
         ));
-        return $chapter;
+        return $last_id=$db->lastInsertId();
     }
 
     public function updateChapter($chapter_id,$chapter_title,$chapter_content)
