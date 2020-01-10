@@ -32,7 +32,7 @@ class CommentsController
         $_SESSION["succes"] = "signalComment";
     
         $commentsManager = new CommentsManager();
-        $affectedComment = $commentsManager->signalComment($_GET["comment_id"]);
+        $affectedComment = $commentsManager->signalComment($_GET['id']);
 
         $chaptersController = new ChaptersController();
     
@@ -40,7 +40,7 @@ class CommentsController
             throw new Exception('Impossible de signaler le commentaire !');
         }
         else {
-            $chaptersController->displayChaptersView($_GET["id"]);
+            header('Location: index.php?action=chapters&id=' . $_GET['chapter_id']);
         } 
     }
 

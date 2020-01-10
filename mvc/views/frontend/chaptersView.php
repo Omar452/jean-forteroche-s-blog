@@ -79,9 +79,9 @@ while($data3 = $commentsQuery->fetch())
     <div class="commentaires">
         <p>Posté par : <?php echo htmlspecialchars($data3["pseudo"]);?>, le <?php echo $data3["date_fr"];?></p> <br>
         <p><?php echo htmlspecialchars($data3["comment"]);?></p> <br>
-        <a class="badge badge-danger text-white" href="index.php?action=signalComment&amp;id=<?php echo $data3["chapter_id"]?>
-        &amp;comment_id=<?php echo $data3["id"]?>">Signaler le commentaire !</a>
-    </div>    
+        <a class="badge badge-danger text-white" href="index.php?action=signalComment&amp;id=<?php echo $data3["id"]?>
+        &amp;chapter_id=<?php echo $data3["chapter_id"]?>">Signaler le commentaire !</a>
+    </div>
 <?php
 }
 $commentsQuery->closeCursor();

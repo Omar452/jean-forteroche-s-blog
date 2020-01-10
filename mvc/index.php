@@ -96,9 +96,9 @@ try
         }
         elseif ($_GET["action"] == "signalComment")
         {
-            if (isset($_GET["id"]) && $_GET["id"] > 0 ) 
+            if (isset($_GET["id"]) && $_GET["id"] > 0 && isset($_GET["chapter_id"]) && $_GET["chapter_id"] > 0) 
             {
-                $commentsController->signalComments();
+                $commentsController->signalComments($_GET["id"],$_GET["chapter_id"]);
             }
             else
             {
