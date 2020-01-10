@@ -14,6 +14,9 @@ $description = "Page réservée à l'administrateur du site";
             <?php
                 switch($_SESSION["succes"])
                 {
+                    case "login":
+                        echo "<p>Bienvenue M. Forteroche.</p>";
+                        break;
                     case "addChapter":
                         echo "<p>Chapitre ajouté avec succès!</p>";
                         break;
@@ -29,28 +32,6 @@ $description = "Page réservée à l'administrateur du site";
                     case "deleteComment":
                         echo "<p>Commentaire supprimé avec succès!</p>";
                         break;
-                }
-            ?>
-        </div> 
-    <?php
-    unset($_SESSION["succes"]);
-    }
-?>
-
-<?php
-    if (isset($_SESSION["succes"]))
-    {
-    ?>
-        <div id="succesMessage" class="text-center alert alert-success alert-link m-3 p-3" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php
-                if($_SESSION["succes"] == "login")
-                {
-                    echo "<p>Bienvenue M. Forteroche</p>";
-                }
-                elseif($_SESSION["succes"] == "signalComment")
-                {
-                    echo "<p>Le commentaire a été signalé avec succès!</p>";
                 }
             ?>
         </div> 
@@ -115,10 +96,11 @@ $description = "Page réservée à l'administrateur du site";
         ?>
             <div class="commentaires">
                 <p>Posté par : <?php echo htmlspecialchars($data3["pseudo"]);?>, le <?php echo $data3["date_fr"];?></p> <br>
+                <p>Chapitre associé: <?php echo $data3["title"];?></p> 
                 <p><?php echo htmlspecialchars($data3["comment"]);?></p> <br>
                 <p class="text-danger">Ce commentaire a été signalé <?= $data3["signal_number"]?> fois.</p>
-                <a  class="badge badge-info text-white" href="index.php?action=allowComment&amp;id=<?=$data3["id"]?>">Modérer</a>
-                <a  class="badge badge-danger text-white" href="index.php?action=deleteComment&amp;id=<?=$data3["id"]?>">Supprimer</a>      
+                <a  class="badge badge-info text-white" href="index.php?action=allowComment&amp;id=<?=$data3["commentsid"]?>">Modérer</a>
+                <a  class="badge badge-danger text-white" href="index.php?action=deleteComment&amp;id=<?=$data3["commentsid"]?>">Supprimer</a>      
             </div>
             <?php    
         }

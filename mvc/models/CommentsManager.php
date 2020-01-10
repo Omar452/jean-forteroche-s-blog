@@ -45,8 +45,12 @@ class CommentsManager extends Manager
     public function getSignaledComments()
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, chapter_id, pseudo, comment, 
-        DATE_FORMAT(date_creation, "%d/%m/%Y") AS date_fr , signal_number FROM comments WHERE signal_comment=? ORDER BY signal_number DESC');
+        $comments = $db->prepare('SELECT chapters.id AS chaptersid, title, comments.id AS commentsid, chapter_id, pseudo, comment, 
+        DATE_FORMAT(date_creation, "%d/%m/%Y") AS date_fr ,signal_number 
+        FROM chapters,comments
+        WHERE chapters.id = chapter_id
+        AND signal_comment=? 
+        ORDER BY signal_number DESC');
         $comments->execute(array(true));
         return $comments;
     }
@@ -58,14 +62,4 @@ class CommentsManager extends Manager
         $deletedComment->execute(array($comment_id));
         return $deletedComment;    
     }
-
-    /*
-    public function deleteAllChapterComments($chapter_id){
-
-        $db = $this->dbConnect();
-        $deletedComments = $db->prepare('DELETE FROM comments WHERE chapter_id=?');
-        $deletedComments->execute(array($chapter_id));
-        return $deletedComment; 
-    }
-    */
 }

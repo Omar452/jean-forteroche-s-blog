@@ -81,7 +81,7 @@ while($data3 = $commentsQuery->fetch())
         <p><?php echo htmlspecialchars($data3["comment"]);?></p> <br>
         <a class="badge badge-danger text-white" href="index.php?action=signalComment&amp;id=<?php echo $data3["chapter_id"]?>
         &amp;comment_id=<?php echo $data3["id"]?>">Signaler le commentaire !</a>
-    </div>
+    </div>    
 <?php
 }
 $commentsQuery->closeCursor();
